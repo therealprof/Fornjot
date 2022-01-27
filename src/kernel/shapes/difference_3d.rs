@@ -17,6 +17,20 @@ impl Shape for fj::Difference {
     }
 
     fn faces(&self, _tolerance: f64, _: &mut DebugInfo) -> Faces {
+        // TASK: Implement algorithm from "Boundary Representation Modelling
+        //       Techniques", section 6.1.1 (pages 127 ff.).
+
+        // TASK: Find interactions between objects by comparing each face in one
+        //       with each face in the other.
+        // TASK: Check for intersection between the surfaces of each face. This
+        //       might result in a curve where they intersect.
+        // TASK: Check that curve against the faces, to find curve sections that
+        //       lie in the faces.
+        // TASK: Find common curve sections that lie in both faces.
+        // TASK: Add common curve sections to faces. (What does that mean
+        //       specifically? Are we creating a new edge, and therefore new
+        //       faces, there?)
+
         todo!()
     }
 
