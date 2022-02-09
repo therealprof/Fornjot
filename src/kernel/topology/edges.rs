@@ -2,8 +2,8 @@ use nalgebra::vector;
 use parry3d_f64::math::Isometry;
 
 use crate::{
-    kernel::geometry::{Circle, Curve},
-    math::Point,
+    kernel::geometry::{Circle, Curve, Line},
+    math::{Point, Vector},
 };
 
 use super::vertices::Vertex;
@@ -129,6 +129,29 @@ impl Edge {
             vertices,
             reverse: false,
         }
+    }
+
+    /// Construct an edge by sweeping a vertex
+    ///
+    /// Only sweeps along the positive direction of the z axis are supported.
+    ///
+    /// You must not use this method to create multiple instances of `Edge` that
+    /// refer to the same edge.
+    ///
+    /// TASK: Complete this doc comment. Look at `Vertex::create_at` for more
+    ///       info.
+    // TASK: Un-suppress warning.
+    #[allow(unused)]
+    pub fn sweep_vertex(vertex: Vertex<3>, path: Vector<1>) -> Self {
+        let line = Line {
+            origin: *vertex.location(),
+            direction: vector![0., 0., path.x],
+        };
+
+        let a = vertex;
+        let b = Vertex::create_at(line.origin + line.direction);
+
+        Self::new(Curve::Line(line), Some([a, b]))
     }
 
     /// Create an arc
