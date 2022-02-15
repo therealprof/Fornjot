@@ -108,6 +108,7 @@ impl Edge {
     ///
     /// Please refer to [`Vertex::create_at`] for an explanation of these
     /// limitations.
+    // TASK: Un-suppress warning.
     #[allow(unused)]
     pub fn sweep_vertex(vertex: Vertex<3>, path: Vector<3>) -> Self {
         let line = Line {
