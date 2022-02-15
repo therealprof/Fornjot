@@ -6,6 +6,9 @@ use crate::{
 /// The vertices of a shape
 pub struct Vertices(pub Vec<Vertex<3>>);
 
+// TASK: Implement `Eq` and `Hash`. But how? Manually, or by making the fields
+//       `R64`-based?
+
 /// A vertex
 ///
 /// This struct exists to distinguish between vertices and points at the type
