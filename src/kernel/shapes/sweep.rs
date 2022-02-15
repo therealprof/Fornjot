@@ -8,13 +8,13 @@ use crate::{
     kernel::{
         approximation::Approximation,
         topology::{
-            edges::Edges,
+            edges::{Edge, Edges},
             faces::{Face, Faces},
             vertices::Vertices,
         },
         Shape,
     },
-    math::{Aabb, Scalar, Transform},
+    math::{Aabb, Scalar, Transform, Vector},
 };
 
 impl Shape for fj::Sweep {
@@ -34,8 +34,14 @@ impl Shape for fj::Sweep {
         let top_faces = original_faces
             .transform(&Isometry::translation(0.0, 0.0, self.length).into());
 
-        // TASK: Iterate through `original_faces.vertices()`, sweep each one
-        //       into an edge.
+        // Create edges of side walls.
+        let mut side_edges = Vec::new();
+        for vertex in self.shape.vertices().0 {
+            let edge =
+                Edge::sweep_vertex(vertex, Vector::from([0., 0., self.length]));
+            side_edges.push(edge);
+        }
+
         // TASK: Iterate through `original_faces.edges()`, sweep each one into
         //       a face. The previously created edges must be provided to the
         //       edge-to-face-sweep operation.
