@@ -46,7 +46,7 @@ jobs:
           toolchain: stable
 
       - name: Cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
 
       - name: Compile
         uses: actions-rs/cargo@v1
